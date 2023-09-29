@@ -1,0 +1,24 @@
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Nombre</th>
+        <th scope="col">Apellido</th>
+        <th scope="col">Grado</th>
+        <th scope="col">Nota</th>
+        <th scope="col">Aprobado</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr
+        *ngFor="let alumno of alumnos; let i = index">
+        <th scope="row">{{i +1}}</th>
+        <td>{{ alumno.nombre | uppercase }}</td>
+        <td>{{ alumno.apellido | uppercase }}</td>
+        <td>{{ alumno.grado}}</td>
+        <td [ngStyle]="{ color: alumno.nota && alumno.nota >= 90 ? 'green' : 'red' }">{{ alumno.nota }}</td>
+        <td *ngIf="alumno.nota >= 90; else desaprobado">Aprobado</td>
+        <ng-template #desaprobado><td>Desaprobado</td></ng-template>
+      </tr>
+    </tbody>
+  </table>
